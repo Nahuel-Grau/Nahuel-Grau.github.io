@@ -1,15 +1,16 @@
 body{
     margin: 0px;
     padding: 0px;
+    color: white;
 }
 header{
     margin: 0;
     padding: 0;
-    background-color: #F1F1F1;
+    background-color: #ccc;
     height: 450px;
     display: flex;
     justify-content: space-between;
-    border: solid 1px #100F0F;
+    
     
 }
 
@@ -26,17 +27,17 @@ h1, h3{
 }
 
 .nombre{
-    background-color: #E2DCC8;
+    background-color: #444343;
     font-size: 70px;
     width: 400px;
-    border-radius: 25px;
+    border-radius: 15px;
 }
 
 .descripcion{
-    background-color: #E2DCC8;
+    background-color: #444343;
     font-size: 30px;
     width: 500px;
-    border-radius: 25px;
+    border-radius: 15px;
 }
 
 .foto{
@@ -47,3 +48,4 @@ h1, h3{
     border-radius: 150px;  
     margin: 75px;
 }
+
