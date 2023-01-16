@@ -10,7 +10,7 @@ div{
 }
 
 .heart{
-    font-size: 10rem;
+    font-size: 7rem;
     animation: heart .5s infinite alternate linear;
 }
 
