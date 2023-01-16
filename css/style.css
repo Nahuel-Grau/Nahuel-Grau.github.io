@@ -21,4 +21,50 @@ div{
     to{
         transform: scale(1);
     }
+
+}
+header{
+    margin: 0;
+    padding: 0;
+    background-color: #F1F1F1;
+    height: 450px;
+    display: flex;
+    justify-content: space-between;
+    border: solid 1px #100F0F;
+    
+}
+
+.titulo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+
+}
+
+h1, h3{
+    margin: 10px 0px 10px 25px;
+}
+
+.nombre{
+    background-color: #E2DCC8;
+    font-size: 70px;
+    width: 400px;
+    border-radius: 25px;
+}
+
+.descripcion{
+    background-color: #E2DCC8;
+    font-size: 30px;
+    width: 500px;
+    border-radius: 25px;
+}
+
+.foto{
+    
+    background-color: #0F3D3E;
+    height: 300px;
+    width: 300px;
+    border-radius: 150px;  
+    margin: 75px;
 }
