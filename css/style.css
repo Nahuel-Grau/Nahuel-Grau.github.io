@@ -1,16 +1,27 @@
 body{
     background-color: aliceblue;
+    margin: 0;
+    padding: 0;
 }
-div{
+
+a{
+    text-decoration: none;
+    color: white;
+    margin: 5px;
+}
+*{
+    box-sizing: border-box;
+}
+.div{
  
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 4vh;
 }
 
-.heart{
-    font-size: 7rem;
+#heart{
+    font-size: 20px;
     animation: heart .5s infinite alternate linear;
 }
 
@@ -24,33 +35,27 @@ div{
 
 }
 header{
+    color: white;
     margin: 0;
     padding: 0;
-    background-color: #F1F1F1;
-    height: 450px;
+    background-color: black;
+    height: 50px;
     display: flex;
     justify-content: space-between;
-    border: solid 1px #100F0F;
-    
+    align-items: center;
 }
 
 .titulo{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
-
+   
 }
 
-h1, h3{
-    margin: 10px 0px 10px 25px;
-}
 
-.nombre{
-    background-color: #E2DCC8;
-    font-size: 70px;
-    width: 400px;
-    border-radius: 25px;
+
+.nombre {
+    font-size: 20px;
+    font-family: cursive;
+    margin: 0px;
 }
 
 .descripcion{
@@ -60,11 +65,34 @@ h1, h3{
     border-radius: 25px;
 }
 
-.foto{
+#foto{
     
     background-color: #0F3D3E;
     height: 300px;
     width: 300px;
     border-radius: 150px;  
     margin: 75px;
+}
+
+img{
+   
+    height: 200px;
+}
+
+.row{
+    display: flex;
+    padding-top: 5px;
+}
+
+.column{
+    flex: 25%;
+    padding: 5px;
+}
+
+.column img{
+    margin-top: 5px;
+}
+
+nav a :hover{
+  color: coral;  
 }
