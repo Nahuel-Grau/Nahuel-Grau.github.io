@@ -93,6 +93,6 @@ img{
     margin-top: 5px;
 }
 
-nav a :hover{
+.nav :hover{
   color: coral;  
 }
