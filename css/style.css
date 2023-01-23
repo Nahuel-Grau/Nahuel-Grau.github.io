@@ -75,8 +75,7 @@ header{
 }
 
 img{
-   
-    height: 200px;
+   height: 200px;
 }
 
 .row{
@@ -96,3 +95,77 @@ img{
 .nav :hover{
   color: coral;  
 }
+
+.sobre-mi{
+    display: grid;
+    grid-template-columns: .5fr 1fr .5fr;
+    grid-template-rows: 50px 130px 210px 50px 210px 200px 80px;
+    justify-items: center;
+    text-align:center;
+}
+
+.sobre-mi > h1 {
+    justify-content: center;
+    font-size: 30px;
+    font-family: 'Signika Negative', sans-serif;
+    
+}
+
+.sobre-mi > p{
+    font-size: 20px;
+    font-family: 'Signika Negative', sans-serif;
+}
+
+.uno {
+    grid-column-start:2 ;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2
+    ;
+}
+
+
+.dos{
+    grid-column-start:2 ;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+
+.tres{
+    grid-column-start:2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 3;
+}
+
+.cuatro{
+    grid-column-start:2;
+    grid-column-end: 3;
+    grid-row-start: 4;
+    grid-row-end: 5;
+}
+
+.cinco{
+    grid-column-start:2;
+    grid-column-end: 3;
+    grid-row-start: 5;
+    grid-row-end: 6;
+}
+
+.seis{
+    grid-column-start:2;
+    grid-column-end: 3;
+    grid-row-start: 6;
+    grid-row-end: 7;
+}
+
+.siete{
+    grid-column-start:2;
+    grid-column-end: 3;
+    grid-row-start: 7;
+    grid-row-end: 9;
+}
+
+
+
