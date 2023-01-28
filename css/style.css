@@ -2,6 +2,7 @@ body{
     background-color: aliceblue;
     margin: 0;
     padding: 0;
+    font-family: cursive;
 }
 
 a{
@@ -196,3 +197,49 @@ img{
 }
 
 
+.inicio{
+   
+    width: 100%;
+    height: 600px;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    
+   
+   
+
+}
+
+
+.inicio div{
+   
+    background-color: black;
+    border-radius: 30px;
+    overflow: hidden;
+    color: white;
+    margin: 10px;
+    border: solid 2px transparent;
+    
+}
+
+.inicio :nth-child(1n +2){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background-color: white;
+    color: black;
+    font-size: 20px;
+    transition: height .08s linear;
+    transition: font-size .08s linear;
+   
+
+}
+
+
+.inicio :nth-child( 1n +2):hover{
+    border: solid 2px coral;
+    height: 70px;
+    font-size: 23px;
+}
