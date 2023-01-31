@@ -1,14 +1,17 @@
+html{
+    font-size: 6.25%;
+}
 body{
     background-color: aliceblue;
     margin: 0;
     padding: 0;
-    font-family: cursive;
+    font-family: 'Anton', sans-serif;
 }
 
 a{
     text-decoration: none;
     color: white;
-    margin: 5px;
+    margin: 15px;
 }
 *{
     box-sizing: border-box;
@@ -40,13 +43,14 @@ header{
     width: 100%;
     position: fixed;
     color: white;
-    margin: 0 0 100px 0;
+    margin: 0 25px 100px 0;
     padding: 0;
     background-color: black;
     height: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 16rem;
 }
 
 .titulo{
@@ -57,7 +61,7 @@ header{
 
 
 .nombre {
-    font-size: 20px;
+    font-size: 20rem;
     font-family: cursive;
     margin: 0px;
 }
@@ -98,6 +102,7 @@ img{
 
 .nav :hover{
   color: coral;  
+  
 }
 
 .sobre-mi{
@@ -231,8 +236,7 @@ img{
     background-color: white;
     color: black;
     font-size: 20px;
-    transition: height .08s linear;
-    transition: font-size .08s linear;
+  
    
 
 }
@@ -240,6 +244,38 @@ img{
 
 .inicio :nth-child( 1n +2):hover{
     border: solid 2px coral;
-    height: 70px;
-    font-size: 23px;
+   
+}
+
+@media (max-width: 390px) {
+    body{
+        background-color: black;
+    }
+
+
+
+    .inicio :nth-child(1n +2){
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        background-color: white;
+        color: black;
+        font-size: 20px;
+      
+       
+    
+    }
+
+    header{
+        border: solid 1rem white;
+        font-size: 13rem;
+        font-family: 'Anton', sans-serif;
+    
+    }
+
+    .nombre{
+        font-size: 20rem;
+    }
+    
 }
