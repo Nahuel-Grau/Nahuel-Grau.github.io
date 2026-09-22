@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Para vos 🌸</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -15,7 +18,9 @@
         body {
             min-height: 100vh;
             overflow: hidden;
+
             font-family: Georgia, 'Times New Roman', serif;
+
             background: linear-gradient(
                 to bottom,
                 #101a3a 0%,
@@ -23,23 +28,56 @@
                 #6c8f9e 75%,
                 #a9c58c 100%
             );
+
             color: white;
         }
 
-        /* -------------------------
-           PANTALLA INICIAL
-        ------------------------- */
 
-        .inicio {
+        /* =====================================
+           PANTALLAS
+        ===================================== */
+
+        .pantalla {
             position: fixed;
             inset: 0;
-            z-index: 100;
+
+            z-index: 50;
+
             display: flex;
             flex-direction: column;
+
             justify-content: center;
             align-items: center;
+
             text-align: center;
+
             padding: 30px;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transform: translateY(25px);
+
+            transition:
+                opacity 1s ease,
+                transform 1s ease,
+                visibility 1s;
+        }
+
+
+        .pantalla.activa {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+
+        /* =====================================
+           INICIO
+        ===================================== */
+
+        .inicio {
+            z-index: 100;
 
             background:
                 radial-gradient(
@@ -47,68 +85,98 @@
                     rgba(255,255,255,.08),
                     transparent 50%
                 ),
+
                 linear-gradient(
                     160deg,
                     #101a3a,
                     #39294f,
                     #743b61
                 );
-
-            transition: opacity 1.5s ease,
-                        visibility 1.5s ease;
         }
 
-        .inicio.oculto {
-            opacity: 0;
-            visibility: hidden;
-        }
 
         .inicio h1 {
             font-size: clamp(2rem, 8vw, 4rem);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+
             animation: aparecer 2s ease;
         }
 
+
         .inicio p {
             font-size: 1.05rem;
-            max-width: 330px;
-            line-height: 1.6;
+            max-width: 340px;
+
+            line-height: 1.7;
+
             opacity: .9;
+
             margin-bottom: 35px;
         }
 
+
+        /* =====================================
+           BOTONES
+        ===================================== */
+
         .boton {
             border: none;
+
             padding: 15px 28px;
+
             border-radius: 50px;
+
             font-size: 1rem;
+
             color: white;
-            background: linear-gradient(135deg, #ff6fae, #b84cff);
-            box-shadow: 0 8px 30px rgba(255, 90, 180, .35);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff6fae,
+                    #b84cff
+                );
+
+            box-shadow:
+                0 8px 30px
+                rgba(255, 90, 180, .35);
+
             cursor: pointer;
-            transition: transform .3s ease,
-                        box-shadow .3s ease;
+
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease;
+
+            margin-top: 25px;
         }
+
 
         .boton:active {
             transform: scale(.94);
         }
 
-        /* -------------------------
+
+        /* =====================================
            ESCENA
-        ------------------------- */
+        ===================================== */
 
         .escena {
             position: relative;
+
             width: 100%;
             height: 100vh;
+
             overflow: hidden;
         }
 
-        /* Luna */
+
+        /* =====================================
+           LUNA
+        ===================================== */
 
         .luna {
             position: absolute;
+
             top: 8%;
             right: 12%;
 
@@ -118,99 +186,156 @@
             border-radius: 50%;
 
             background: #fff8d6;
+
             box-shadow:
                 0 0 25px rgba(255, 248, 214, .7),
                 0 0 60px rgba(255, 248, 214, .3);
 
-            animation: flotar 5s ease-in-out infinite;
+            animation:
+                flotar 5s ease-in-out infinite;
         }
 
-        /* Estrellas */
+
+        /* =====================================
+           ESTRELLAS
+        ===================================== */
 
         .estrella {
             position: absolute;
+
             width: 3px;
             height: 3px;
+
             background: white;
+
             border-radius: 50%;
-            animation: brillo 2s infinite alternate;
+
+            animation:
+                brillo 2s infinite alternate;
         }
 
-        .e1 { top: 15%; left: 15%; }
-        .e2 { top: 23%; left: 65%; animation-delay: .5s; }
-        .e3 { top: 11%; left: 48%; animation-delay: 1s; }
-        .e4 { top: 30%; left: 85%; animation-delay: 1.5s; }
-        .e5 { top: 18%; left: 35%; animation-delay: .8s; }
 
-        /* -------------------------
-           MENSAJE
-        ------------------------- */
+        .e1 {
+            top: 15%;
+            left: 15%;
+        }
 
-        .mensaje {
-            position: absolute;
-            top: 17%;
-            left: 50%;
-            transform: translateX(-50%);
+        .e2 {
+            top: 23%;
+            left: 65%;
+            animation-delay: .5s;
+        }
 
+        .e3 {
+            top: 11%;
+            left: 48%;
+            animation-delay: 1s;
+        }
+
+        .e4 {
+            top: 30%;
+            left: 85%;
+            animation-delay: 1.5s;
+        }
+
+        .e5 {
+            top: 18%;
+            left: 35%;
+            animation-delay: .8s;
+        }
+
+
+        /* =====================================
+           CONTENIDO
+        ===================================== */
+
+        .contenido {
             width: 90%;
             max-width: 500px;
 
             text-align: center;
 
-            opacity: 0;
-            animation: mensaje 3s ease forwards;
-            animation-delay: 1.5s;
+            position: relative;
+            z-index: 120;
         }
 
-        .mensaje h2 {
-            font-size: clamp(1.8rem, 7vw, 3rem);
-            margin-bottom: 15px;
-            text-shadow: 0 3px 15px rgba(0,0,0,.3);
+
+        .contenido h2 {
+            font-size:
+                clamp(1.8rem, 7vw, 3rem);
+
+            margin-bottom: 20px;
+
+            text-shadow:
+                0 3px 15px rgba(0,0,0,.3);
         }
 
-        .mensaje p {
+
+        .contenido p {
             font-size: 1.05rem;
+
             line-height: 1.7;
-            text-shadow: 0 2px 8px rgba(0,0,0,.4);
+
+            text-shadow:
+                0 2px 8px rgba(0,0,0,.4);
         }
 
-        /* -------------------------
+
+        /* =====================================
            SUELO
-        ------------------------- */
+        ===================================== */
 
         .suelo {
             position: absolute;
+
             bottom: 0;
+
             width: 100%;
             height: 20%;
 
-            background: linear-gradient(
-                to top,
-                #182d20,
-                #365d36
-            );
+            background:
+                linear-gradient(
+                    to top,
+                    #182d20,
+                    #365d36
+                );
 
-            border-radius: 50% 50% 0 0 / 20% 20% 0 0;
+            border-radius:
+                50% 50% 0 0 /
+                20% 20% 0 0;
+
+            z-index: 5;
         }
 
-        /* -------------------------
-           FLORES
-        ------------------------- */
+
+        /* =====================================
+           FLORES DEL FONDO
+        ===================================== */
 
         .flor {
             position: absolute;
+
             bottom: 12%;
+
             width: 8px;
             height: var(--alto);
+
             background: #397542;
+
             border-radius: 10px;
 
             transform-origin: bottom;
-            animation: crecer 2s ease-out forwards;
+
+            animation:
+                crecer 2s ease-out forwards;
+
+            z-index: 6;
         }
+
 
         .flor::before {
             content: "";
+
             position: absolute;
 
             top: -15px;
@@ -219,7 +344,8 @@
             width: 32px;
             height: 32px;
 
-            transform: translateX(-50%);
+            transform:
+                translateX(-50%);
 
             background: var(--color);
 
@@ -232,8 +358,10 @@
                 0 -15px var(--color);
         }
 
+
         .flor::after {
             content: "";
+
             position: absolute;
 
             top: -15px;
@@ -242,13 +370,16 @@
             width: 14px;
             height: 14px;
 
-            transform: translate(-50%, -50%);
+            transform:
+                translate(-50%, -50%);
 
             border-radius: 50%;
+
             background: #ffd84d;
 
             z-index: 2;
         }
+
 
         .f1 {
             left: 8%;
@@ -285,12 +416,14 @@
             animation-delay: 1.4s;
         }
 
-        /* -------------------------
-           PÉTALOS
-        ------------------------- */
+
+        /* =====================================
+           PÉTALOS QUE CAEN
+        ===================================== */
 
         .petalo {
             position: absolute;
+
             top: -30px;
 
             width: 12px;
@@ -298,14 +431,18 @@
 
             background: #ff9bc7;
 
-            border-radius: 100% 0 100% 0;
+            border-radius:
+                100% 0 100% 0;
 
             opacity: .8;
 
             animation:
                 caer linear infinite,
                 girar 3s linear infinite;
+
+            z-index: 30;
         }
+
 
         .p1 {
             left: 10%;
@@ -314,30 +451,393 @@
 
         .p2 {
             left: 30%;
+
             background: #ffd45c;
+
             animation-duration: 9s;
             animation-delay: 2s;
         }
 
         .p3 {
             left: 55%;
+
             background: #d59cff;
+
             animation-duration: 8s;
             animation-delay: 1s;
         }
 
         .p4 {
             left: 75%;
+
             background: #ff8585;
+
             animation-duration: 10s;
             animation-delay: 3s;
         }
 
-        /* -------------------------
+
+        /* =====================================
+           🌱 MACETA
+        ===================================== */
+
+        .maceta {
+            position: absolute;
+
+            bottom: 6%;
+            left: 50%;
+
+            width: 150px;
+            height: 290px;
+
+            transform: translateX(-50%);
+
+            z-index: 15;
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================
+           TIERRA
+        ===================================== */
+
+        .tierra {
+            position: absolute;
+
+            bottom: 70px;
+            left: 50%;
+
+            width: 100px;
+            height: 28px;
+
+            transform: translateX(-50%);
+
+            background:
+                radial-gradient(
+                    ellipse,
+                    #4b2d1d,
+                    #29180f
+                );
+
+            border-radius: 50%;
+
+            z-index: 3;
+        }
+
+
+        /* =====================================
+           TALLO
+        ===================================== */
+
+        .tallo {
+            position: absolute;
+
+            bottom: 82px;
+            left: 50%;
+
+            width: 8px;
+
+            height: 0;
+
+            transform:
+                translateX(-50%);
+
+            background:
+                linear-gradient(
+                    to right,
+                    #285c32,
+                    #55a35b,
+                    #285c32
+                );
+
+            border-radius: 10px;
+
+            transform-origin: bottom;
+
+            transition:
+                height 2s ease;
+
+            z-index: 2;
+        }
+
+
+        /* =====================================
+           HOJAS
+        ===================================== */
+
+        .hoja {
+            position: absolute;
+
+            width: 48px;
+            height: 23px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #65a85d,
+                    #34733b
+                );
+
+            border-radius:
+                100% 0 100% 0;
+
+            opacity: 0;
+
+            transition:
+                opacity 1.5s ease,
+                transform 1s ease;
+        }
+
+
+        .hoja1 {
+            left: -42px;
+            top: 55%;
+
+            transform:
+                rotate(-25deg)
+                scale(0);
+        }
+
+
+        .hoja2 {
+            right: -42px;
+            top: 38%;
+
+            transform:
+                scaleX(-1)
+                rotate(-25deg)
+                scale(0);
+        }
+
+
+        /* =====================================
+           FLOR PRINCIPAL
+        ===================================== */
+
+        .flor-final {
+            position: absolute;
+
+            top: -25px;
+            left: 50%;
+
+            width: 75px;
+            height: 75px;
+
+            transform:
+                translateX(-50%)
+                scale(0);
+
+            opacity: 0;
+
+            transition:
+                transform 2s ease,
+                opacity 1.5s ease;
+
+            transform-origin: center;
+        }
+
+
+        /* =====================================
+           PÉTALOS DE LA FLOR DE LA MACETA
+        ===================================== */
+
+        .petalo-flor {
+            position: absolute;
+
+            width: 36px;
+            height: 46px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff8fc2,
+                    #ff4f9b
+                );
+
+            border-radius:
+                50% 50% 45% 45%;
+
+            left: 50%;
+            top: 50%;
+
+            transform-origin:
+                bottom center;
+
+            box-shadow:
+                0 4px 8px rgba(0,0,0,.15);
+        }
+
+
+        .petalo-flor.pf1 {
+            transform:
+                translate(-50%, -90%)
+                rotate(0deg);
+        }
+
+        .petalo-flor.pf2 {
+            transform:
+                translate(-50%, -90%)
+                rotate(72deg);
+        }
+
+        .petalo-flor.pf3 {
+            transform:
+                translate(-50%, -90%)
+                rotate(144deg);
+        }
+
+        .petalo-flor.pf4 {
+            transform:
+                translate(-50%, -90%)
+                rotate(216deg);
+        }
+
+        .petalo-flor.pf5 {
+            transform:
+                translate(-50%, -90%)
+                rotate(288deg);
+        }
+
+
+        /* =====================================
+           CENTRO DE LA FLOR
+        ===================================== */
+
+        .centro {
+            position: absolute;
+
+            width: 24px;
+            height: 24px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #ffe978,
+                    #e7a927
+                );
+
+            border-radius: 50%;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            z-index: 3;
+
+            box-shadow:
+                0 0 10px rgba(255,220,80,.5);
+        }
+
+
+        /* =====================================
+           CRECIMIENTO DE LA MACETA
+        ===================================== */
+
+        /* Pantalla 1: pequeño brote */
+
+        body.etapa1 .tallo {
+            height: 25px;
+        }
+
+
+        /* Pantalla 2: empieza a crecer */
+
+        body.etapa2 .tallo {
+            height: 65px;
+        }
+
+
+        /* Pantalla 3: aparece primera hoja */
+
+        body.etapa3 .tallo {
+            height: 115px;
+        }
+
+        body.etapa3 .hoja1 {
+            opacity: 1;
+
+            transform:
+                rotate(-25deg)
+                scale(1);
+        }
+
+
+        /* Pantalla 4: segunda hoja */
+
+        body.etapa4 .tallo {
+            height: 155px;
+        }
+
+        body.etapa4 .hoja1 {
+            opacity: 1;
+
+            transform:
+                rotate(-25deg)
+                scale(1);
+        }
+
+        body.etapa4 .hoja2 {
+            opacity: 1;
+
+            transform:
+                scaleX(-1)
+                rotate(-25deg)
+                scale(1);
+        }
+
+
+        /* Pantalla 5: aparece la flor */
+
+        body.etapa5 .tallo {
+            height: 185px;
+        }
+
+        body.etapa5 .hoja1,
+        body.etapa5 .hoja2 {
+            opacity: 1;
+        }
+
+        body.etapa5 .flor-final {
+            opacity: 1;
+
+            transform:
+                translateX(-50%)
+                scale(1);
+        }
+
+
+        /* Pantalla 6: flor completa */
+
+        body.etapa6 .tallo {
+            height: 185px;
+        }
+
+        body.etapa6 .hoja1,
+        body.etapa6 .hoja2 {
+            opacity: 1;
+        }
+
+        body.etapa6 .flor-final {
+            opacity: 1;
+
+            transform:
+                translateX(-50%)
+                scale(1.15);
+
+            animation:
+                balanceoFlor 3s ease-in-out infinite;
+        }
+
+
+        /* =====================================
            ANIMACIONES
-        ------------------------- */
+        ===================================== */
 
         @keyframes crecer {
+
             from {
                 transform: scaleY(0);
             }
@@ -347,29 +847,23 @@
             }
         }
 
-        @keyframes mensaje {
-            from {
-                opacity: 0;
-                transform: translate(-50%, 20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translate(-50%, 0);
-            }
-        }
 
         @keyframes caer {
+
             from {
-                transform: translateY(-30px);
+                transform:
+                    translateY(-30px);
             }
 
             to {
-                transform: translateY(110vh);
+                transform:
+                    translateY(110vh);
             }
         }
 
+
         @keyframes girar {
+
             from {
                 rotate: 0deg;
             }
@@ -379,62 +873,102 @@
             }
         }
 
+
         @keyframes brillo {
+
             from {
                 opacity: .2;
             }
 
             to {
                 opacity: 1;
-                transform: scale(1.8);
+
+                transform:
+                    scale(1.8);
             }
         }
 
+
         @keyframes flotar {
+
             0%, 100% {
-                transform: translateY(0);
+                transform:
+                    translateY(0);
             }
 
             50% {
-                transform: translateY(-10px);
+                transform:
+                    translateY(-10px);
             }
         }
 
+
         @keyframes aparecer {
+
             from {
                 opacity: 0;
-                transform: translateY(20px);
+
+                transform:
+                    translateY(20px);
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0);
+
+                transform:
+                    translateY(0);
             }
         }
 
-        /* -------------------------
+
+        /* Movimiento suave de la flor final */
+
+        @keyframes balanceoFlor {
+
+            0%, 100% {
+                transform:
+                    translateX(-50%)
+                    scale(1.15)
+                    rotate(-2deg);
+            }
+
+            50% {
+                transform:
+                    translateX(-50%)
+                    scale(1.15)
+                    rotate(2deg);
+            }
+        }
+
+
+        /* =====================================
            CELULAR
-        ------------------------- */
+        ===================================== */
 
         @media (max-width: 600px) {
 
             .luna {
                 width: 55px;
                 height: 55px;
+
                 right: 10%;
             }
 
-            .mensaje {
-                top: 14%;
+
+            .contenido {
+                width: 88%;
             }
 
-            .mensaje p {
+
+            .contenido p {
                 font-size: .98rem;
             }
+
 
             .flor {
                 bottom: 11%;
             }
+
 
             .f1 {
                 left: 4%;
@@ -455,35 +989,41 @@
             .f5 {
                 left: 83%;
             }
+
+
+            /* Maceta un poco más pequeña en celular */
+
+            .maceta {
+                transform:
+                    translateX(-50%)
+                    scale(.85);
+
+                transform-origin:
+                    bottom center;
+            }
         }
+
     </style>
+
 </head>
 
-<body>
 
-    <!-- PANTALLA INICIAL -->
-
-    <section class="inicio" id="inicio">
-
-        <h1>🌸 Para vos</h1>
-
-        <p>
-            Preparé algo pequeño para vos...
-            pero antes tenés que descubrirlo.
-        </p>
-
-        <button class="boton" onclick="abrirSorpresa()">
-            Abrir mi sorpresa 💕
-        </button>
-
-    </section>
+<body class="etapa1">
 
 
-    <!-- ESCENA -->
+    <!-- =====================================
+         ESCENA
+    ===================================== -->
 
     <main class="escena">
 
+
+        <!-- Luna -->
+
         <div class="luna"></div>
+
+
+        <!-- Estrellas -->
 
         <div class="estrella e1"></div>
         <div class="estrella e2"></div>
@@ -492,28 +1032,258 @@
         <div class="estrella e5"></div>
 
 
-        <!-- MENSAJE -->
+        <!-- =================================
+             PANTALLA 1
+        ================================= -->
 
-        <section class="mensaje">
+        <section
+            class="pantalla inicio activa"
+            id="pantalla1">
 
-            <h2>Feliz primavera, mi amor 🌷</h2>
+            <div class="contenido">
 
-            <p>
-                Gracias por hacerme el hombre mas feliz del mundo,
-                <br>          
-                Gracias por aguantarme todos los dias,
-                <br>
-                Gracias por ser todo lo que está bien,<br>
-                Gracias por siempre animarme,<br>
-                gracias por siempre confiar en mi
-                <br><br>
-                Te amo muchísimo. ❤️
-            </p>
+                <h1>💐 Para vos</h1>
+
+                <p>
+
+                    ¡Qué bella eres, amada mía!
+                    ¡Todo en ti es perfecto!
+
+                    <br><br>
+
+                    <em>
+                        Cantares 4:7 (TLA)
+                    </em>
+
+                </p>
+
+
+                <button
+                    class="boton"
+                    onclick="siguiente(2)">
+
+                    Continuar 💕
+
+                </button>
+
+            </div>
 
         </section>
 
 
-        <!-- PÉTALOS -->
+        <!-- =================================
+             PANTALLA 2
+        ================================= -->
+
+        <section
+            class="pantalla"
+            id="pantalla2">
+
+            <div class="contenido">
+
+                <h2>
+                    Te amo, mi amor 🌷
+                </h2>
+
+                <p>
+
+                    Gracias por hacerme
+                    el hombre más feliz
+                    del mundo.
+
+                    <br><br>
+
+                    Gracias por aguantarme
+                    todos los días.
+
+                    <br><br>
+
+                    Gracias por ser
+                    todo lo que está bien.
+
+                    <br><br>
+
+                    Gracias por siempre
+                    animarme y por siempre
+                    confiar en mí.
+
+                </p>
+
+
+                <button
+                    class="boton"
+                    onclick="siguiente(3)">
+
+                    Continuar 💕
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             PANTALLA 3
+        ================================= -->
+
+        <section
+            class="pantalla"
+            id="pantalla3">
+
+            <div class="contenido">
+
+                <h2>
+                    🥰 Un pequeño recuerdo
+                </h2>
+
+                <p>
+
+                    Esta página va a quedar
+                    como un recuerdo para siempre.
+
+                    <br><br>
+
+                    Tal vez algún día volvamos
+                    a verla y recordemos
+                    este momento.
+
+                </p>
+
+
+                <button
+                    class="boton"
+                    onclick="siguiente(4)">
+
+                    Seguir 💕
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             PANTALLA 4
+        ================================= -->
+
+        <section
+            class="pantalla"
+            id="pantalla4">
+
+            <div class="contenido">
+
+                <h2>
+                    Recuerda que... 🥰
+                </h2>
+
+                <p>
+
+                    No importa lo que pase,
+                    siempre voy a querer verte
+                    sonreír.
+
+                    <br><br>
+
+                    Y siempre voy a estar
+                    para vos.
+
+                </p>
+
+
+                <button
+                    class="boton"
+                    onclick="siguiente(5)">
+
+                    Continuar ❤️
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             PANTALLA 5
+        ================================= -->
+
+        <section
+            class="pantalla"
+            id="pantalla5">
+
+            <div class="contenido">
+
+                <h2>
+                    Dios te ama ❤️
+                </h2>
+
+                <p>
+
+                    Y siempre lo hará.
+
+                    <br><br>
+
+                    Que nunca olvides
+                    lo valiosa que sos.
+
+                </p>
+
+
+                <button
+                    class="boton"
+                    onclick="siguiente(6)">
+
+                    Una última cosa... 🌸
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             PANTALLA 6
+        ================================= -->
+
+        <section
+            class="pantalla"
+            id="pantalla6">
+
+            <div class="contenido">
+
+                <h2>
+                    Feliz primavera,
+                    mi amor 🌸
+                </h2>
+
+                <p>
+
+                    Gracias por compartir
+                    tu vida conmigo.
+
+                    <br><br>
+
+                    Te amo muchísimo. ❤️
+
+                    <br><br>
+
+                    <strong>
+                        Siempre vos.
+                    </strong>
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             PÉTALOS QUE CAEN
+        ================================= -->
 
         <div class="petalo p1"></div>
         <div class="petalo p2"></div>
@@ -521,7 +1291,9 @@
         <div class="petalo p4"></div>
 
 
-        <!-- FLORES -->
+        <!-- =================================
+             FLORES DEL FONDO
+        ================================= -->
 
         <div class="flor f1"></div>
         <div class="flor f2"></div>
@@ -530,22 +1302,105 @@
         <div class="flor f5"></div>
 
 
+        <!-- =================================
+             🌱 MACETA Y FLOR QUE CRECE
+        ================================= -->
+
+        <div class="maceta">
+
+            <!-- Tierra -->
+
+            <div class="tierra"></div>
+
+
+            <!-- Tallo -->
+
+            <div class="tallo">
+
+                <!-- Hojas -->
+
+                <div class="hoja hoja1"></div>
+
+                <div class="hoja hoja2"></div>
+
+
+                <!-- Flor -->
+
+                <div class="flor-final">
+
+                    <div class="petalo-flor pf1"></div>
+                    <div class="petalo-flor pf2"></div>
+                    <div class="petalo-flor pf3"></div>
+                    <div class="petalo-flor pf4"></div>
+                    <div class="petalo-flor pf5"></div>
+
+                    <div class="centro"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Maceta -->
+
+            <div class="maceta-cuerpo"></div>
+
+        </div>
+
+
+        <!-- Suelo -->
+
         <div class="suelo"></div>
+
 
     </main>
 
 
+    <!-- =====================================
+         JAVASCRIPT
+    ===================================== -->
+
     <script>
 
-        function abrirSorpresa() {
+        function siguiente(numero) {
 
-            const inicio = document.getElementById("inicio");
+            // Ocultar todas las pantallas
 
-            inicio.classList.add("oculto");
+            const pantallas =
+                document.querySelectorAll(".pantalla");
+
+
+            pantallas.forEach(function(pantalla) {
+
+                pantalla.classList.remove("activa");
+
+            });
+
+
+            // Mostrar la pantalla seleccionada
+
+            const siguientePantalla =
+                document.getElementById(
+                    "pantalla" + numero
+                );
+
+
+            siguientePantalla.classList.add("activa");
+
+
+            // Cambiar la etapa de crecimiento
+
+            document.body.className = "";
+
+            document.body.classList.add(
+                "etapa" + numero
+            );
 
         }
 
     </script>
 
+
 </body>
+
 </html>
