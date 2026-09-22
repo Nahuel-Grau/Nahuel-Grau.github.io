@@ -1,44 +1,551 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-    <title>Nahuel</title>
+    <title>Para vos 🌸</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow: hidden;
+            font-family: Georgia, 'Times New Roman', serif;
+            background: linear-gradient(
+                to bottom,
+                #101a3a 0%,
+                #263b68 45%,
+                #6c8f9e 75%,
+                #a9c58c 100%
+            );
+            color: white;
+        }
+
+        /* -------------------------
+           PANTALLA INICIAL
+        ------------------------- */
+
+        .inicio {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(255,255,255,.08),
+                    transparent 50%
+                ),
+                linear-gradient(
+                    160deg,
+                    #101a3a,
+                    #39294f,
+                    #743b61
+                );
+
+            transition: opacity 1.5s ease,
+                        visibility 1.5s ease;
+        }
+
+        .inicio.oculto {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .inicio h1 {
+            font-size: clamp(2rem, 8vw, 4rem);
+            margin-bottom: 15px;
+            animation: aparecer 2s ease;
+        }
+
+        .inicio p {
+            font-size: 1.05rem;
+            max-width: 330px;
+            line-height: 1.6;
+            opacity: .9;
+            margin-bottom: 35px;
+        }
+
+        .boton {
+            border: none;
+            padding: 15px 28px;
+            border-radius: 50px;
+            font-size: 1rem;
+            color: white;
+            background: linear-gradient(135deg, #ff6fae, #b84cff);
+            box-shadow: 0 8px 30px rgba(255, 90, 180, .35);
+            cursor: pointer;
+            transition: transform .3s ease,
+                        box-shadow .3s ease;
+        }
+
+        .boton:active {
+            transform: scale(.94);
+        }
+
+        /* -------------------------
+           ESCENA
+        ------------------------- */
+
+        .escena {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Luna */
+
+        .luna {
+            position: absolute;
+            top: 8%;
+            right: 12%;
+
+            width: 70px;
+            height: 70px;
+
+            border-radius: 50%;
+
+            background: #fff8d6;
+            box-shadow:
+                0 0 25px rgba(255, 248, 214, .7),
+                0 0 60px rgba(255, 248, 214, .3);
+
+            animation: flotar 5s ease-in-out infinite;
+        }
+
+        /* Estrellas */
+
+        .estrella {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            animation: brillo 2s infinite alternate;
+        }
+
+        .e1 { top: 15%; left: 15%; }
+        .e2 { top: 23%; left: 65%; animation-delay: .5s; }
+        .e3 { top: 11%; left: 48%; animation-delay: 1s; }
+        .e4 { top: 30%; left: 85%; animation-delay: 1.5s; }
+        .e5 { top: 18%; left: 35%; animation-delay: .8s; }
+
+        /* -------------------------
+           MENSAJE
+        ------------------------- */
+
+        .mensaje {
+            position: absolute;
+            top: 17%;
+            left: 50%;
+            transform: translateX(-50%);
+
+            width: 90%;
+            max-width: 500px;
+
+            text-align: center;
+
+            opacity: 0;
+            animation: mensaje 3s ease forwards;
+            animation-delay: 1.5s;
+        }
+
+        .mensaje h2 {
+            font-size: clamp(1.8rem, 7vw, 3rem);
+            margin-bottom: 15px;
+            text-shadow: 0 3px 15px rgba(0,0,0,.3);
+        }
+
+        .mensaje p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            text-shadow: 0 2px 8px rgba(0,0,0,.4);
+        }
+
+        /* -------------------------
+           SUELO
+        ------------------------- */
+
+        .suelo {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 20%;
+
+            background: linear-gradient(
+                to top,
+                #182d20,
+                #365d36
+            );
+
+            border-radius: 50% 50% 0 0 / 20% 20% 0 0;
+        }
+
+        /* -------------------------
+           FLORES
+        ------------------------- */
+
+        .flor {
+            position: absolute;
+            bottom: 12%;
+            width: 8px;
+            height: var(--alto);
+            background: #397542;
+            border-radius: 10px;
+
+            transform-origin: bottom;
+            animation: crecer 2s ease-out forwards;
+        }
+
+        .flor::before {
+            content: "";
+            position: absolute;
+
+            top: -15px;
+            left: 50%;
+
+            width: 32px;
+            height: 32px;
+
+            transform: translateX(-50%);
+
+            background: var(--color);
+
+            border-radius: 50%;
+
+            box-shadow:
+                15px 0 var(--color),
+                -15px 0 var(--color),
+                0 15px var(--color),
+                0 -15px var(--color);
+        }
+
+        .flor::after {
+            content: "";
+            position: absolute;
+
+            top: -15px;
+            left: 50%;
+
+            width: 14px;
+            height: 14px;
+
+            transform: translate(-50%, -50%);
+
+            border-radius: 50%;
+            background: #ffd84d;
+
+            z-index: 2;
+        }
+
+        .f1 {
+            left: 8%;
+            --alto: 100px;
+            --color: #ff6fae;
+            animation-delay: .2s;
+        }
+
+        .f2 {
+            left: 25%;
+            --alto: 150px;
+            --color: #ffd84d;
+            animation-delay: .5s;
+        }
+
+        .f3 {
+            left: 43%;
+            --alto: 120px;
+            --color: #a970ff;
+            animation-delay: .8s;
+        }
+
+        .f4 {
+            left: 62%;
+            --alto: 170px;
+            --color: #ff7b7b;
+            animation-delay: 1.1s;
+        }
+
+        .f5 {
+            left: 80%;
+            --alto: 115px;
+            --color: #ff9f43;
+            animation-delay: 1.4s;
+        }
+
+        /* -------------------------
+           PÉTALOS
+        ------------------------- */
+
+        .petalo {
+            position: absolute;
+            top: -30px;
+
+            width: 12px;
+            height: 18px;
+
+            background: #ff9bc7;
+
+            border-radius: 100% 0 100% 0;
+
+            opacity: .8;
+
+            animation:
+                caer linear infinite,
+                girar 3s linear infinite;
+        }
+
+        .p1 {
+            left: 10%;
+            animation-duration: 7s;
+        }
+
+        .p2 {
+            left: 30%;
+            background: #ffd45c;
+            animation-duration: 9s;
+            animation-delay: 2s;
+        }
+
+        .p3 {
+            left: 55%;
+            background: #d59cff;
+            animation-duration: 8s;
+            animation-delay: 1s;
+        }
+
+        .p4 {
+            left: 75%;
+            background: #ff8585;
+            animation-duration: 10s;
+            animation-delay: 3s;
+        }
+
+        /* -------------------------
+           ANIMACIONES
+        ------------------------- */
+
+        @keyframes crecer {
+            from {
+                transform: scaleY(0);
+            }
+
+            to {
+                transform: scaleY(1);
+            }
+        }
+
+        @keyframes mensaje {
+            from {
+                opacity: 0;
+                transform: translate(-50%, 20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        @keyframes caer {
+            from {
+                transform: translateY(-30px);
+            }
+
+            to {
+                transform: translateY(110vh);
+            }
+        }
+
+        @keyframes girar {
+            from {
+                rotate: 0deg;
+            }
+
+            to {
+                rotate: 360deg;
+            }
+        }
+
+        @keyframes brillo {
+            from {
+                opacity: .2;
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1.8);
+            }
+        }
+
+        @keyframes flotar {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* -------------------------
+           CELULAR
+        ------------------------- */
+
+        @media (max-width: 600px) {
+
+            .luna {
+                width: 55px;
+                height: 55px;
+                right: 10%;
+            }
+
+            .mensaje {
+                top: 14%;
+            }
+
+            .mensaje p {
+                font-size: .98rem;
+            }
+
+            .flor {
+                bottom: 11%;
+            }
+
+            .f1 {
+                left: 4%;
+            }
+
+            .f2 {
+                left: 23%;
+            }
+
+            .f3 {
+                left: 43%;
+            }
+
+            .f4 {
+                left: 63%;
+            }
+
+            .f5 {
+                left: 83%;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    
-    <header>
-        <section class="titulo">  
-            <div id="heart" class="div">🧡</div>
-            <p class="nombre">Nahuel Grau</p>
-          
-            
-        </section >       
-        <nav class="nav">
-            <a href="index.html">Inicio</a>
-            <a href="galeria.html">Fotos</a>
-            <a href="sobre-mi.html">Sobre mi</a>
-        </nav>
-    </header>
-    
-    <section class="inicio">
-        <div>
-            <img src="https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="cat">
 
-            <div class="datos">Nombre: Michichi</div>
-            <div class="datos">Ig: de la minita</div>
-            <div class="datos">LinKedin: de la señorita</div>
-            <div class="datos">Carnet: de la dama</div>
-        
-            
-           
+    <!-- PANTALLA INICIAL -->
 
-        </div>
-        
+    <section class="inicio" id="inicio">
+
+        <h1>🌸 Para vos</h1>
+
+        <p>
+            Preparé algo pequeño para vos...
+            pero antes tenés que descubrirlo.
+        </p>
+
+        <button class="boton" onclick="abrirSorpresa()">
+            Abrir mi sorpresa 💕
+        </button>
+
     </section>
- 
+
+
+    <!-- ESCENA -->
+
+    <main class="escena">
+
+        <div class="luna"></div>
+
+        <div class="estrella e1"></div>
+        <div class="estrella e2"></div>
+        <div class="estrella e3"></div>
+        <div class="estrella e4"></div>
+        <div class="estrella e5"></div>
+
+
+        <!-- MENSAJE -->
+
+        <section class="mensaje">
+
+            <h2>Feliz primavera, mi amor 🌷</h2>
+
+            <p>
+                Gracias por hacerme el hombre mas feliz del mundo,
+                <br>          
+                Gracias por aguantarme todos los dias,
+                <br>
+                Gracias por ser todo lo que está bien,<br>
+                Gracias por siempre animarme,<br>
+                gracias por siempre confiar en mi
+                <br><br>
+                Te amo muchísimo. ❤️
+            </p>
+
+        </section>
+
+
+        <!-- PÉTALOS -->
+
+        <div class="petalo p1"></div>
+        <div class="petalo p2"></div>
+        <div class="petalo p3"></div>
+        <div class="petalo p4"></div>
+
+
+        <!-- FLORES -->
+
+        <div class="flor f1"></div>
+        <div class="flor f2"></div>
+        <div class="flor f3"></div>
+        <div class="flor f4"></div>
+        <div class="flor f5"></div>
+
+
+        <div class="suelo"></div>
+
+    </main>
+
+
+    <script>
+
+        function abrirSorpresa() {
+
+            const inicio = document.getElementById("inicio");
+
+            inicio.classList.add("oculto");
+
+        }
+
+    </script>
+
 </body>
 </html>
